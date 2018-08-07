@@ -14,22 +14,26 @@ const int WIDTH = 500, HEIGHT = 256;
 
 int main(int argc, char *argv[])
 {
-	Vector3 a(5, 2, 1);
-	Vector3 b(0, 2, 9);
-	Vector3 c(3,9,6); 
+	Vector3 a(2, 3, 5);
+	Vector3 b(0, 0, 1);
+	Vector3 c(1, 0, 1); 
+
+	Vector3 m1(1, 1, 1);
+	Vector3 m2(0, 2, 1);
+	Vector3 m3(1, 1, 0);
 
 	Vector3 p(6, 9, 1);
 
 	Matrix3 am(a, b, c);
 
 	p = am * a;
-	Matrix3 bm(c, a, b);
+	Matrix3 bm(m1, m2, m3);
 
-	Matrix3 cm = bm * am;
-	am.Display();
-	std::cout << std::endl;
-	bm.Display();
-	std::cout << std::endl;
+	Matrix3 cm = am * bm;
+	//am.Display();
+	//std::cout << std::endl;
+	//bm.Display();
+	//std::cout << std::endl;
 	p.Display();
 	std::cout << std::endl;
 	cm.Display();
@@ -43,11 +47,11 @@ int main(int argc, char *argv[])
 	am.Display();
 	float* scale=new float;
 
-	Vector3 testBase(5, 4, 4);
-	Vector3 testPreyection(-9,-2,0);
+	Vector3 testBase(3, 1, 0);
+	Vector3 testPreyection(1,5,0);
 	Vector3* result= new Vector3();
-	Vector3::Projection(NULL, result, testPreyection, testBase);
-	std::cout << std::endl;
+	Vector3::Projection(scale, result, testPreyection, testBase);
+	std::cout <<*scale<< std::endl;
 	result->Display();
 	//std::cout << std::endl;
 	//std::cout << *scale<<std::endl;

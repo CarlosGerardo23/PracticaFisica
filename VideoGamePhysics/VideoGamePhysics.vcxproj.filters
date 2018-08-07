@@ -25,7 +25,7 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Matrix3.cpp">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

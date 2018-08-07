@@ -1,1 +1,3 @@
-﻿  VideoGamePhysics.vcxproj -> C:\Users\carlo\Downloads\VideoGamePhysics\VideoGamePhysics\Debug\VideoGamePhysics.exe
+﻿  Main.cpp
+c:\users\carlo\documents\sae\septimo trimestre\física\videogamephysics\videogamephysics\main.cpp(95): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  VideoGamePhysics.vcxproj -> C:\Users\carlo\Documents\sae\Septimo trimestre\Física\VideoGamePhysics\Debug\VideoGamePhysics.exe

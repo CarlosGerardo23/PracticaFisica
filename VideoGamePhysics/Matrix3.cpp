@@ -90,7 +90,7 @@ Vector3 & Matrix3::operator*(const Vector3 & rh)
 
 void Matrix3::Display()
 {
-	std::cout << "[" << mt[0].x()<<"," << mt[0].y()<<"," << mt[0].z() << "]"<<std::endl;
-	std::cout << "[" << mt[1].x()<<"," << mt[1].y()<<"," << mt[1].z() << "]"<<std::endl;
-	std::cout << "[" << mt[2].x()<<"," << mt[2].y()<<"," << mt[2].z() << "]"<< std::endl;
+	std::cout << "[" << mt[0].x()<<"," << mt[1].x()<<"," << mt[2].x() << "]"<<std::endl;
+	std::cout << "[" << mt[0].y()<<"," << mt[1].y()<<"," << mt[2].y() << "]"<<std::endl;
+	std::cout << "[" << mt[0].z()<<"," << mt[1].z()<<"," << mt[2].z() << "]"<< std::endl;
 }
