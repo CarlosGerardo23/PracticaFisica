@@ -107,12 +107,13 @@ void Vector3::Projection(float * scalarProjection, Vector3 * vectorialProjection
 	float scalar = tempBase.punto(tempProjected);
 	float magnitud = (tempBase.Magnitud())*(tempBase.Magnitud());
 	scalar=scalar/magnitud;
+	tempProjected = tempBase * scalar;
 	if (vectorialProjection)
 		*vectorialProjection = tempBase * scalar;
 	else
 		vectorialProjection = NULL;
 	if (scalarProjection)
-		*scalarProjection = vectorialProjection->Magnitud();
+		*scalarProjection = tempProjected.Magnitud();
 	else
 		scalarProjection = NULL;
 }
@@ -123,13 +124,13 @@ float Vector3::Magnitud()
 	float magnitud = sqrt(square);
 	return magnitud;
 }
-Vector3 & Vector3::Normalize(Vector3 & vector)
+Vector3 & Vector3::Normalize()
 {
 	Vector3 result;
-	float magnitud = vector.Magnitud();
-	result.m[0] = vector.m[0] / magnitud;
-	result.m[1] = vector.m[1] / magnitud;
-	result.m[2] = vector.m[2] / magnitud;
+	float magnitud = this->Magnitud();
+	result.m[0] =  this->m[0] / magnitud;
+	result.m[1] =  this->m[1] / magnitud;
+	result.m[2] =  this->m[2] / magnitud;
 
 	return result;
 
@@ -146,4 +147,8 @@ void Vector3::Display()
 	std::cout << "[" << m[0] << "]" << std::endl;
 	std::cout << "[" << m[1] << "]" << std::endl;
 	std::cout << "[" << m[2] << "]" << std::endl;
+}
+
+void Vector3::Rotate()
+{
 }

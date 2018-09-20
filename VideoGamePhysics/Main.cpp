@@ -1,60 +1,32 @@
-#include <iostream>
+﻿#include <iostream>
 #include <SDL.h>
 #include <stdio.h>
 #include <math.h>
+#include "Particula.h"
 #include "Timer.h"
 #include "Input.h"
-#include "Vector3.h"
-#include "Matrix3.h"
+#include "Primitiva.h"
+#include "Resorte.h"
+#include "Flotabilidad.h"
 
 using namespace std;
 
-const int WIDTH = 500, HEIGHT = 256;
+const int WIDTH = 500, HEIGHT = 500;
 
 
 int main(int argc, char *argv[])
 {
-	Vector3 a(2, 3, 5);
-	Vector3 b(0, 0, 1);
-	Vector3 c(1, 0, 1); 
 
-	Vector3 m1(1, 1, 1);
-	Vector3 m2(0, 2, 1);
-	Vector3 m3(1, 1, 0);
+	float force = 1000;
+	Vector3 puntoFijo(WIDTH / 2, 0, 0);
+	Vector3 posLiquido(WIDTH / 2, WIDTH/2, 0);
 
-	Vector3 p(6, 9, 1);
 
-	Matrix3 am(a, b, c);
+	Vector3 pesPosition3(puntoFijo.x(), puntoFijo.y() + 80, 0);
+	Flotabilidad* liquido= new Flotabilidad(posLiquido, 200);
+	Particula* particula3 = new Particula(puntoFijo, 5,liquido);
+	particula3->activeGravity = true;
 
-	p = am * a;
-	Matrix3 bm(m1, m2, m3);
-
-	Matrix3 cm = am * bm;
-	//am.Display();
-	//std::cout << std::endl;
-	//bm.Display();
-	//std::cout << std::endl;
-	p.Display();
-	std::cout << std::endl;
-	cm.Display();
-	std::cout << std::endl;
-	std::cout << b.Magnitud();
-	std::cout << std::endl;
-	am.Display();
-	std::cout << std::endl;
-	am.Transpose();
-	std::cout << std::endl;
-	am.Display();
-	float* scale=new float;
-
-	Vector3 testBase(3, 1, 0);
-	Vector3 testPreyection(1,5,0);
-	Vector3* result= new Vector3();
-	Vector3::Projection(scale, result, testPreyection, testBase);
-	std::cout <<*scale<< std::endl;
-	result->Display();
-	//std::cout << std::endl;
-	//std::cout << *scale<<std::endl;
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 	{
 		cout << "SDL could not initialize! SDL Error: " << SDL_GetError() << endl;
@@ -72,6 +44,8 @@ int main(int argc, char *argv[])
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
 	cout << renderer << endl;
 	float position = 0;
+	
+	//cubo.Rotate(teta);
 	while (true)
 	{
 		if (SDL_PollEvent(&windowEvent))
@@ -80,20 +54,66 @@ int main(int argc, char *argv[])
 			{
 				break;
 			}
+			switch (windowEvent.type) {
+				/* Look for a keypress */
+			case SDL_KEYDOWN:
+				/* Check the SDLKey values and move change the coords */
+				switch (windowEvent.key.keysym.sym) {
+				case SDLK_d:
+				{
+					particula3->DisplayConsole();
+					
+				}
+					break;
+				case SDLK_UP:
+				{
+					Vector3 temp(0, -force, 0);
+					particula3->AddForce(temp);
+					
+				}
+				break;
+				case SDLK_DOWN:
+				{
+					Vector3 temp(0, force, 0);
+					particula3->AddForce(temp);
+				}
+				break;
+				case SDLK_RIGHT:
+				{
+					Vector3 temp(force, 0, 0);
+					particula3->AddForce(temp);
+				}
+				break;
+				case SDLK_LEFT:
+				{
+					Vector3 temp(-force, 0, 0);
+					particula3->AddForce(temp);
+				}
+				break;
 
+				default:
+					break;
+				}
+			}
 			Input::Update(windowEvent);
 		}
-
-		Timer::Update();
-
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+		float g = 0.001;
 	
-
-
-		position += Timer::GetDeltaTime();
-		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 0);
-		SDL_RenderDrawPoint(renderer, position, 50 - 20 * sin(position));
 		SDL_RenderPresent(renderer);
+		
+		Particula::CheckTime(Timer::GetDeltaTime());
+		Timer::Update();
+	
+		particula3->Integrate(Timer::GetDeltaTime());
+
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+		SDL_RenderClear(renderer);
+	
+		
+		//liquido.Draw(renderer);
+		particula3->Display(renderer, Image::Cube);
+		
+		
 	}
 
 	SDL_DestroyRenderer(renderer);

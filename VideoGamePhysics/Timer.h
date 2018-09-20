@@ -6,15 +6,15 @@ class Timer
 {
 public:
 
-	static void Update()
+	inline static void Update()
 	{
 		currentTime = SDL_GetTicks();
 		deltaTime = currentTime - lastTime; 
 		lastTime = currentTime;
 	}
 
-	static float GetDeltaTime() { return (float)deltaTime / 1000; }
-	static float GetTotalTime() { return (float)currentTime / 1000; }
+	inline static float GetDeltaTime() { return (float)deltaTime / 1000; }
+	inline static float GetTotalTime() { return (float)currentTime / 1000; }
 
 private:
 

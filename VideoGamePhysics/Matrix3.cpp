@@ -55,7 +55,7 @@ Matrix3 & Matrix3::operator*(const Matrix3 & rh)
 
 	tempTranspose.Transpose();
 
-	//I make a copy of my main matrix and turn it to his transpose matrix so I can use the dot product to simplify the multiplication
+	//I make a copy of my main matrix and turn it in to his transpose matrix so I can use the dot product to simplify the multiplication
 
 	vec1.SetVector(tempTranspose.mt[0].punto(rh.mt[0]), tempTranspose.mt[1].punto(rh.mt[0]),tempTranspose.mt[2].punto(rh.mt[0]));
 	vec2.SetVector(tempTranspose.mt[0].punto(rh.mt[1]), tempTranspose.mt[1].punto(rh.mt[1]), tempTranspose.mt[2].punto(rh.mt[1]));
@@ -82,7 +82,7 @@ Vector3 & Matrix3::operator*(const Vector3 & rh)
 
 	tempTranspose.Transpose();
 
-	//Using the same principle I just make a copy of my main matrix and turn it to his transpose and use dot product with the vector
+	//Using the same principle I just make a copy of my main matrix and turn it in to his transpose and use dot product with the vector
 	result.SetVector(tempTranspose.mt[0].punto(rh), tempTranspose.mt[1].punto(rh), tempTranspose.mt[2].punto(rh));
 
 	return result;

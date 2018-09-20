@@ -19,9 +19,10 @@ public:
 	Vector3& operator *=(const float& rh);
 	static void Projection(float* scalarProjection, Vector3* vectorialProjection, const Vector3& vectorProjected,const Vector3& vectorBase);
 	float Magnitud();
-	static Vector3& Normalize(Vector3& vector);
+	Vector3& Normalize();
 	float& punto(const Vector3& rh);
 	void Display();
+	void Rotate();
 private: 
 	float m[3];
 };

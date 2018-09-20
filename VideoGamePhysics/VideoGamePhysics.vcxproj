@@ -145,15 +145,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Flotabilidad.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Matrix3.cpp" />
     <ClCompile Include="Particula.cpp" />
+    <ClCompile Include="Primitiva.cpp" />
+    <ClCompile Include="Quaternion​.cpp" />
+    <ClCompile Include="Resorte.cpp" />
     <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Flotabilidad.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Matrix3.h" />
     <ClInclude Include="Particula.h" />
+    <ClInclude Include="Primitiva.h" />
+    <ClInclude Include="Quaternion​.h" />
+    <ClInclude Include="Resorte.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector3.h" />
   </ItemGroup>
