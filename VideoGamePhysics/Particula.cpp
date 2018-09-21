@@ -140,17 +140,16 @@ void Particula::Integrate(float time)
 
 void Particula::ForceFlotabilidad()
 {
-	float b = 0.9;
-	Vector3 amortiguador(0, b, 0);
-	amortiguador = amortiguador * velocity;
+	
+	
 	float liquidDensity = 1000;
 	float gravity = 9.81;
-	float relativeVolume = liquido->CalculateRelativeVolume();
+	float relativeVolume = liquido->CalculateRelativeVolume(cubo->GetLongitud(), volumeCube);
 	float Eforce = relativeVolume;
 	Eforce = Eforce * liquidDensity*gravity;
 	
 	Vector3 finalForce(0, -Eforce, 0);
-	finalForce = finalForce - amortiguador;
+	finalForce = finalForce ;
 	
 	AddForce(finalForce);
 }
@@ -215,6 +214,6 @@ Particula::Particula(Vector3 pos, float masa, Flotabilidad * liquido) : position
 	SetMasaInversa();
 	cubo = new Cubo(position, magnitud);
 	cubo->SetVertices();
-	this->liquido->TotalVolume = (magnitud/100) * (magnitud/100)*(magnitud/100);
+	volumeCube = cubo->GetLongitud()*cubo->GetLongitud()*cubo->GetLongitud();
 }
 

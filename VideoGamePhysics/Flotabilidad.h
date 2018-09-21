@@ -10,7 +10,7 @@ class Flotabilidad
 	  float waterSurface;
 	  Flotabilidad(Vector3& centro, float Longitud);
 	  void Draw(SDL_Renderer* render);
-	  float CalculateRelativeVolume();
+	  float CalculateRelativeVolume(float objectLongitud,float volumeTotal);
 	  bool IsSumerged(std::vector<Vector3*> verticesObjeto);
 	  float TotalVolume;
   private:  

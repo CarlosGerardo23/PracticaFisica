@@ -22,9 +22,9 @@ int main(int argc, char *argv[])
 	Vector3 posLiquido(WIDTH / 2, WIDTH/2, 0);
 
 
-	Vector3 pesPosition3(puntoFijo.x(), puntoFijo.y() + 80, 0);
+	Vector3 pesPosition3(posLiquido.x(), posLiquido.y()-100 , 0);
 	Flotabilidad* liquido= new Flotabilidad(posLiquido, 200);
-	Particula* particula3 = new Particula(puntoFijo, 5,liquido);
+	Particula* particula3 = new Particula(pesPosition3, 20000000,liquido);
 	particula3->activeGravity = true;
 
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)

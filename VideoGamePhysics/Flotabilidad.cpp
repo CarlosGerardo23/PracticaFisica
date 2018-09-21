@@ -15,16 +15,17 @@ void Flotabilidad::Draw(SDL_Renderer* render)
 	liquido->Draw(render,color);
 }
 
-float Flotabilidad::CalculateRelativeVolume()
+float Flotabilidad::CalculateRelativeVolume(float objectLongitud, float volumeTotal)
 {
 	float relativeHeight;
 	relativeHeight= firstVertexSumerged->y()- waterSurface;
 	float relativeVolume;
-	relativeVolume = (liquido->GetLongitud()/100)*(liquido->GetLongitud()/100);
+	//relativeVolume = (liquido->GetLongitud()/100)*(liquido->GetLongitud()/100);
+	relativeVolume = objectLongitud*objectLongitud;
 	relativeVolume *= relativeHeight;
 
-	if (relativeVolume >= TotalVolume)
-		relativeVolume = TotalVolume;
+	if (relativeVolume >= volumeTotal)
+		relativeVolume = volumeTotal;
 	
 	return relativeVolume;
 }

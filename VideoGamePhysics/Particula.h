@@ -47,7 +47,7 @@ private:
 	Vector3 forceAcum;
 
 	Flotabilidad* liquido=NULL;
-
+	float volumeCube;
 	float reductor = .5;
 	float tempTime;
 	float masa;
